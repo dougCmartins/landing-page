@@ -1,0 +1,20 @@
+/* Mobile-first queries */
+:root {
+    --h-color: #111827 !important;
+    --p-color: #374151 !important;
+    --bg-blue-light: #D5FAFC;
+    --bg-blue-semilight: #1DB5BE;
+    --bg-violet: #7C3AED;
+  }
+
+.text-lg, .text-base {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  
+  @media (min-width: 768px) {
+    .text-lg { font-size: 1.125rem; }
+    .text-base { font-size: 1rem; }
+  }
+  
+  .text-subtitle { color: var(--h-color); }
