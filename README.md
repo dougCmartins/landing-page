@@ -1,109 +1,55 @@
-```markdown
-# Nuxt Minimal Starter
+# Doug Martins
 
-Este é um modelo minimalista para o Nuxt.js, projetado para estudo. O modelo é baseado no Nuxt 3 e vem com uma configuração básica que você pode expandir conforme suas necessidades.
+Landing page em Nuxt 3. A aplicação está na raiz do repositório: uma página, a hero de portfolio, e arranque por Docker.
 
-## Descrição do Projeto
+## Página
 
-Este projeto é um template simples e flexível para criar websites usando o Nuxt.js. Ele inclui as configurações essenciais para começar, como roteamento, layout padrão e componentes básicos.
+A home (`pages/index.vue`) monta, por esta ordem:
 
-O site possui várias seções que permitem aos usuários explorar diferentes aspectos do projeto, como **Funcionalidades**, **História**, **Conquistas**, **Integrações** e **Projetos**.
+1. **Header** — About (`#about`), Projects (GitHub) e Contact (mailto).
+2. **Hero** — título, cartão e trust bar.
 
-## Mapa do Site
+## Estrutura
 
-A seguir está o layout das seções do site:
-
-1. **Funcionalidades** - Uma seção que destaca as principais funcionalidades do projeto.
-2. **História** - Uma seção que descreve a trajetória ou o background do projeto.
-3. **Conquistas** - Uma seção que exibe as conquistas ou marcos do projeto.
-4. **Integrações** - Uma seção que detalha as integrações ou tecnologias utilizadas no projeto.
-5. **Projeto** - Uma seção com informações sobre o próprio projeto, incluindo detalhes e objetivos.
-
-Essas seções são representadas pelos seguintes links de navegação:
-
-```javascript
-links(): any[] {
-  return [
-    { label: 'Feature', to: '#feature' },
-    { label: 'Story', to: '#story' },
-    { label: 'Achievement', to: '#achievement' },
-    { label: 'Integration', to: '#integration' },
-    { label: 'Project', to: '#project' }
-  ]
-}
+```text
+app.vue                 shell da aplicação
+pages/index.vue         página única
+components/             secções da landing
+assets/css/             estilos
+public/                 favicon e robots.txt
+nuxt.config.ts          head, SEO e Nitro
+Dockerfile
+docker-compose.yml
+docker/entrypoint.sh
+Makefile
+.env.example
 ```
 
-## Configuração
+Não há pasta `frontend/` nem API. O domínio de negócio ainda não existe no backend, por isso o frontend não abre pastas de contexto.
 
-Certifique-se de instalar as dependências:
+## Arranque
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+make up
 ```
 
-## Servidor de Desenvolvimento
+O site fica em `http://localhost:3000`. O contentor corre `npm install` e `npm run dev -- --host 0.0.0.0 --port 3000`.
 
-Inicie o servidor de desenvolvimento em `http://localhost:3000`:
+| Alvo | Efeito |
+| --- | --- |
+| `make up` | sobe e constrói o serviço `frontend` |
+| `make logs` | acompanha os logs |
+| `make shell` | shell dentro do contentor |
+| `make down` | pára os contentores |
 
-```bash
-# npm
-npm run dev
+## SEO
 
-# pnpm
-pnpm dev
+Título, descrição, URL canónico, Open Graph e o JSON-LD usam `NUXT_PUBLIC_SITE_URL`.
 
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Produção
-
-Construa a aplicação para produção:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Visualize localmente a versão de produção:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
+Em local o valor é `http://localhost:3000` (ver `.env.example`). Em produção, defina o domínio público antes do `make up`.
 
 ## Autor
 
-Este projeto foi desenvolvido por **Douglas C Martins**.  
-Você pode me encontrar no [GitHub](https://github.com/dougCmartins).
+Douglas C Martins. [GitHub](https://github.com/dougCmartins).
+
+![Hero da landing](docs/hero.jpg)

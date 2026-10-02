@@ -1,66 +1,94 @@
+const siteUrl = process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+const siteName = 'Doug Martins'
+const siteTitle = 'Doug Martins | Full-Stack Developer'
+const siteDescription = 'Mid-level Full-Stack Developer building scalable digital products with Laravel, PHP, and Vue 3.'
+const shareImage = `${siteUrl}/images/hero-bg.webp`
+const shareImageAlt = 'Abstract background of the Doug Martins portfolio'
+
 export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      siteUrl,
+    },
+  },
   typescript: {
     strict: true,
   },
   devtools: { enabled: false },
-  alias: { css: '/<rootDir>/assets/css' },
   css: ['@/assets/css/main.css'],
   app: {
     head: {
-      title: 'Example site',
+      title: siteTitle,
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-      htmlAttrs: { lang: 'pt-BR' },
+      htmlAttrs: { lang: 'en' },
       meta: [
-        { name: 'description', content: 'Soluções em desenvolvimento web e design para o seu negócio.' },
-        { name: 'keywords', content: 'desenvolvimento web, design, soluscon, nuxt, tailwind' },
-        { name: 'author', content: 'Soluscon Codes' },
+        { name: 'description', content: siteDescription },
+        { name: 'author', content: siteName },
         { name: 'robots', content: 'index, follow' },
-        { property: 'og:title', content: 'Soluscon Codes' },
-        { property: 'og:description', content: 'Soluções em desenvolvimento web e design para o seu negócio.' },
+        { property: 'og:site_name', content: siteName },
+        { property: 'og:locale', content: 'en' },
+        { property: 'og:title', content: siteTitle },
+        { property: 'og:description', content: siteDescription },
         { property: 'og:type', content: 'website' },
-        { property: 'og:url', content: 'http://localhost:3000/' },
-        { property: 'og:image', content: 'https://i.ibb.co/zVKCBgdr/iphone.webp' },
+        { property: 'og:url', content: siteUrl },
+        { property: 'og:image', content: shareImage },
+        { property: 'og:image:alt', content: shareImageAlt },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: 'Soluscon Codes' },
-        { name: 'twitter:description', content: 'Soluções em desenvolvimento web e design para o seu negócio.' },
-        { name: 'twitter:image', content: 'https://i.ibb.co/zVKCBgdr/iphone.webp' }
+        { name: 'twitter:title', content: siteTitle },
+        { name: 'twitter:description', content: siteDescription },
+        { name: 'twitter:image', content: shareImage },
+        { name: 'twitter:image:alt', content: shareImageAlt },
       ],
       link: [
+        { rel: 'canonical', href: siteUrl },
+        { rel: 'icon', href: '/favicon.ico' },
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+        { rel: 'preconnect', href: 'https://api.fontshare.com' },
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;700',
-          media: 'print',
-          onload: "this.media='all'"
-        }
+          href: 'https://api.fontshare.com/v2/css?f[]=clash-display@400&display=swap',
+        },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap',
+        },
+      ],
+      script: [
+        {
+          type: 'application/ld+json',
+          innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: siteName,
+            url: siteUrl,
+            description: siteDescription,
+            inLanguage: 'en',
+          }),
+        },
       ],
       style: [
         {
           children: `
            html{scroll-behavior:smooth;}
             body {
-              font-family: 'Inter', sans-serif !important;
-              margin: 0 auto !important;
-              max-width: 1440px !important;
+              font-family: 'DM Sans', sans-serif;
+              margin: 0 !important;
               box-sizing: border-box !important;
-            }
-            @media (max-width: 768px) {
-              body {
-                max-width: 100% !important;
-              }
+              background: #0e0f0f;
+              color: #ffffff;
             }
             h1,h2,h3,h4 {
-              color: var(--h-color) !important;
-              font-weight: 800 !important;
+              color: var(--h-color);
             }`
         },
       ],
     },
   },
   compatibilityDate: '2025-02-03',
-  modules: ['@nuxt/ui', '@nuxt/image'],
+  modules: ['@nuxt/ui', '@nuxt/image', '@vueuse/motion/nuxt'],
   image: {
-    domains: ['i.ibb.co'],
     screens: {
       xs: 320,
       sm: 640,
@@ -91,6 +119,11 @@ export default defineNuxtConfig({
     },
   },
   vite: {
+    server: {
+      watch: {
+        usePolling: process.env.CHOKIDAR_USEPOLLING === 'true',
+      },
+    },
     build: {
       minify: 'terser',
       terserOptions: {
@@ -99,7 +132,7 @@ export default defineNuxtConfig({
           drop_debugger: true,
         },
       },
-      brotliSize: true,
+      reportCompressedSize: true,
     },
   },
   nitro: {
@@ -107,34 +140,23 @@ export default defineNuxtConfig({
       gzip: true,
       brotli: true,
     },
-      routeRules: process.env.NODE_ENV === 'production'
-      ? {
-          '/': { static: true, cache: { swr: true, maxAge: 3600 } },
-          '/_ipx/**': {
-            headers: {
-              'Cache-Control': 'public, max-age=31536000, immutable',
-              'X-Cache-Status': 'HIT'
-            },
-            cache: { swr: true, maxAge: 31536000 }
-          },
-          '/_nuxt/**': {
-            headers: {
-              'Cache-Control': 'public, max-age=31536000, immutable'
-            }
-          }
-        }
-      : {
-          '/': { cache: true },
-          '/_ipx/**': { cache: true },
-          '/_nuxt/**': { cache: true },
-        }
+    routeRules: {
+      '/_ipx/**': {
+        headers: {
+          'cache-control': 'public, max-age=31536000, immutable',
+        },
+      },
+      '/_nuxt/**': {
+        headers: {
+          'cache-control': 'public, max-age=31536000, immutable',
+        },
+      },
+      ...(process.env.NODE_ENV === 'production' ? { '/': { swr: 3600 } } : {}),
+    },
   },
   postcss: {
     plugins: {
       cssnano: process.env.NODE_ENV === 'production' ? { preset: 'default' } : false,
     },
-  },
-  render: {
-    resourceHints: false,
   },
 });

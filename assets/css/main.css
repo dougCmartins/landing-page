@@ -1,20 +1,54 @@
-/* Mobile-first queries */
+@import url("https://api.fontshare.com/v2/css?f[]=clash-display@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap");
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: #0e0f0f;
+  color: #ffffff;
+  font-family: "DM Sans", sans-serif;
+}
+
 :root {
-    --h-color: #111827 !important;
-    --p-color: #374151 !important;
-    --bg-blue-light: #D5FAFC;
-    --bg-blue-semilight: #1DB5BE;
-    --bg-violet: #7C3AED;
-  }
+  --h-color: #ffffff !important;
+  --p-color: #b0b0b0 !important;
+  --bg-blue-light: #0e0f0f;
+  --bg-blue-semilight: #181919;
+  --bg-violet: #24fbee;
+  --surface-0: #0e0f0f;
+  --surface-1: #181919;
+  --surface-3: #232526;
+  --ink: #ffffff;
+  --body: #b0b0b0;
+  --muted: #8a8a8a;
+  --line: #282828;
+  --cta: #13a961;
+  --cta-ink: #090909;
+  --font-display: "Clash Display", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  --radius-pill: 500px;
+  --radius-card: 12px;
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --ease-enter: cubic-bezier(0.22, 1, 0.36, 1);
+  --pad-x: 96px;
+}
 
 .text-lg, .text-base {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .text-lg { font-size: 1.125rem; }
+  .text-base { font-size: 1rem; }
+}
+
+.text-subtitle { color: var(--h-color); }
+
+@media (max-width: 1023px) {
+  :root {
+    --pad-x: 20px;
   }
-  
-  @media (min-width: 768px) {
-    .text-lg { font-size: 1.125rem; }
-    .text-base { font-size: 1rem; }
-  }
-  
-  .text-subtitle { color: var(--h-color); }
+}
