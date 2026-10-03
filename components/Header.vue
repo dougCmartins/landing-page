@@ -5,9 +5,8 @@
     </a>
     <nav aria-label="Main">
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="https://github.com/dougCmartins">Projects</a></li>
-        <li><a href="mailto:martinsdouglas087@gmail.com">Contact</a></li>
+        <li><a href="https://github.com/dougCmartins" target="_blank">Projects</a></li>
+        <li><a href="https://www.linkedin.com/in/douglas-martins-089167187" target="_blank">Contact</a></li>
       </ul>
     </nav>
   </header>

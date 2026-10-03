@@ -2,11 +2,11 @@
   <main class="hero">
     <div class="hero-grid">
       <div class="hero-copy">
-        <h1 class="reveal reveal--up reveal--headline">Mid-level <span class="nowrap">Full-Stack</span> Developer building scalable digital products with Laravel, PHP, and <span class="nowrap">Vue 3.</span></h1>
+        <h1 class="reveal reveal--up reveal--headline"><span class="nowrap">Full-Stack</span> Developer building scalable digital products with Laravel, PHP, and <span class="nowrap">Vue 3.</span></h1>
         <p class="lede reveal reveal--up reveal--lede">More than 6 years of experience in <span class="nowrap">E-commerce</span> and Fintech. Specialist in clean architecture (DDD), performance optimization, and AI integration in the development workflow.</p>
         <div class="ctas reveal reveal--up reveal--ctas">
-          <a class="btn btn-primary" href="https://github.com/dougCmartins">View projects</a>
-          <a class="btn btn-ghost" href="mailto:martinsdouglas087@gmail.com">Contact</a>
+          <a class="btn btn-primary" href="https://github.com/dougCmartins" target="_blank">View projects</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/douglas-martins-089167187" target="_blank">Contact</a>
         </div>
       </div>
 

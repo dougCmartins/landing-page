@@ -6,7 +6,7 @@ Landing page em Nuxt 3. A aplicação está na raiz do repositório: uma página
 
 A home (`pages/index.vue`) monta, por esta ordem:
 
-1. **Header** — About (`#about`), Projects (GitHub) e Contact (mailto).
+1. **Header** — Projects (GitHub), Contact (mailto) e LinkedIn.
 2. **Hero** — título, cartão e trust bar.
 
 ## Estrutura
