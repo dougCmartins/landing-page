@@ -1,435 +1,328 @@
 <template>
-  <main class="hero">
+  <section class="hero content-width" aria-labelledby="hero-name">
     <div class="hero-grid">
       <div class="hero-copy">
-        <h1 class="reveal reveal--up reveal--headline"><span class="nowrap">Full-Stack</span> Developer building scalable digital products with Laravel, PHP, and <span class="nowrap">Vue 3.</span></h1>
-        <p class="lede reveal reveal--up reveal--lede">More than 6 years of experience in <span class="nowrap">E-commerce</span> and Fintech. Specialist in clean architecture (DDD), performance optimization, and AI integration in the development workflow.</p>
-        <div class="ctas reveal reveal--up reveal--ctas">
-          <a class="btn btn-primary" href="https://github.com/dougCmartins" target="_blank">View projects</a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/douglas-martins-089167187" target="_blank">Contact</a>
+        <div class="hero-status">
+          <p class="availability-pill">
+            <span class="status-dot" />
+            {{ copy.hero.availability }}
+          </p>
+          <p class="hero-location">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            {{ copy.hero.location }}
+          </p>
+        </div>
+        <h1 id="hero-name">{{ copy.hero.name }}</h1>
+        <p class="hero-role">{{ copy.hero.role }}</p>
+        <p class="hero-summary">{{ copy.hero.summary }}</p>
+        <div class="pills hero-stack">
+          <span v-for="item in currentStack" :key="item" class="stack-pill">{{ item }}</span>
+        </div>
+        <div class="hero-actions">
+          <a class="portfolio-button portfolio-button-primary" :href="contact.github" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+              <path d="M9 18c-4.51 2-5-2-7-2" />
+            </svg>
+            {{ copy.hero.viewProjects }}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 7h10v10" />
+              <path d="M7 17 17 7" />
+            </svg>
+          </a>
+          <a class="portfolio-button portfolio-button-outline" :href="`mailto:${contact.email}`">
+            {{ copy.hero.contact }}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 7h10v10" />
+              <path d="M7 17 17 7" />
+            </svg>
+          </a>
+          <a class="portfolio-button portfolio-button-outline" href="/cv/Douglas_da_Cruz_Martins.pdf" download="Douglas_da_Cruz_Martins.pdf">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3v12" />
+              <path d="m7 10 5 5 5-5" />
+              <path d="M5 21h14" />
+            </svg>
+            {{ copy.hero.downloadCv }}
+          </a>
+        </div>
+        <div class="hero-social">
+          <a :href="contact.linkedin" target="_blank" rel="noreferrer" :aria-label="copy.hero.linkedin" :title="copy.hero.linkedin">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect width="4" height="12" x="2" y="9" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+          </a>
+          <a :href="`mailto:${contact.email}`" :aria-label="copy.hero.gmail" :title="copy.hero.gmail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="16" x="2" y="4" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+          </a>
+          <a :href="contact.github" target="_blank" rel="noreferrer" :aria-label="copy.hero.github" :title="copy.hero.github">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+              <path d="M9 18c-4.51 2-5-2-7-2" />
+            </svg>
+          </a>
         </div>
       </div>
-
-      <aside class="id-card reveal reveal--card" id="about" aria-label="Doug Martins">
-        <div class="id-head">
-          <span class="avatar" aria-hidden="true">DM</span>
-          <div>
-            <p class="id-name">Doug Martins</p>
-            <p class="id-role">Full-Stack Developer</p>
-            <p class="id-focus">AI-assisted engineering</p>
-          </div>
-        </div>
-        <ul class="pills" aria-label="Stack">
-          <li>Laravel</li>
-          <li>Vue</li>
-          <li>Nuxt</li>
-          <li>MySQL</li>
-          <li>Docker</li>
-          <li>Node.js</li>
-          <li>AI</li>
-        </ul>
-      </aside>
+      <img
+        class="hero-portrait"
+        src="/images/douglas-c-martins.jpg"
+        width="824"
+        height="1024"
+        :alt="copy.hero.portraitAlt"
+      >
     </div>
-  </main>
-
-  <div class="trust reveal reveal--fade reveal--trust">
-    <p class="trust-label">Currently working with:</p>
-    <ul class="pills" aria-label="Technologies">
-      <li>Laravel</li>
-      <li>PHP</li>
-      <li>Vue 3</li>
-      <li>Nuxt</li>
-      <li>MySQL</li>
-      <li>Docker</li>
-      <li>Node.js</li>
-      <li>AI</li>
-    </ul>
-  </div>
+  </section>
 </template>
+
+<script setup lang="ts">
+import { contact, currentStack } from '~/utils/portfolio'
+
+const { copy } = usePortfolioLocale()
+</script>
 
 <style scoped>
 .hero {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  padding: 48px var(--pad-x) 32px;
+  padding-top: 158px;
+  padding-bottom: 62px;
 }
 
 .hero-grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: 24px;
   align-items: center;
-  width: 100%;
+  gap: 24px;
 }
 
 .hero-copy {
-  grid-column: 1 / span 6;
+  grid-column: span 7;
+  min-width: 0;
+}
+
+.hero-status {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  max-width: 640px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 22px;
+}
+
+.availability-pill,
+.hero-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--p-color);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.availability-pill {
+  border: 1px solid var(--border);
+  border-radius: 500px;
+  background: color-mix(in oklch, var(--card) 72%, transparent);
+  padding: 6px 12px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--signal);
+  flex-shrink: 0;
 }
 
 .hero h1 {
-  margin: 0;
-  color: var(--ink);
   font-family: var(--font-display);
-  font-weight: 400;
   font-size: 64px;
   line-height: 72px;
-  letter-spacing: -0.02em;
-  text-wrap: balance;
+  font-weight: 500;
+  margin: 22px 0 16px;
+  animation: fade-up 600ms var(--ease-enter) both;
 }
 
-.nowrap {
-  white-space: nowrap;
-}
-
-.lede {
-  margin: 24px 0 0;
-  max-width: 36em;
-  color: var(--body);
-  font-size: 20px;
+.hero-role {
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 39px;
   font-weight: 400;
-  line-height: 30px;
+  max-width: 680px;
+  margin: 0 0 18px;
+  color: var(--p-color);
+  animation: fade-up 600ms 80ms var(--ease-enter) both;
 }
 
-.ctas {
+.hero-summary {
+  font-size: 17px;
+  line-height: 28px;
+  color: var(--p-color);
+  max-width: 620px;
+  margin: 0;
+  animation: fade-up 600ms 150ms var(--ease-enter) both;
+}
+
+.hero-stack {
+  margin-top: 22px;
+  max-width: 620px;
+  animation: fade-up 600ms 220ms var(--ease-enter) both;
+}
+
+.hero-actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 12px;
-  margin-top: 32px;
+  margin-top: 28px;
+  animation: fade-up 600ms 300ms var(--ease-enter) both;
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 48px;
-  padding: 0 24px;
-  border-radius: var(--radius-pill);
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 24px;
-  text-decoration: none;
-  transition: background-color 150ms var(--ease-enter), border-color 150ms var(--ease-enter), color 150ms var(--ease-enter);
-}
-
-.btn-primary {
-  border: 1px solid #181919;
-  background: #112829;
-  color: #ffffff;
-}
-
-.btn-ghost {
-  border: 1px solid var(--line);
-  background: transparent;
-  color: var(--ink);
-}
-
-.id-card {
-  grid-column: 8 / span 5;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding: 28px;
-  background: var(--surface-1);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
-}
-
-.id-head {
+.hero-social {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
+  margin-top: 22px;
+  animation: fade-up 600ms 360ms var(--ease-enter) both;
 }
 
-.avatar {
+.hero-social a {
   display: grid;
-  flex: 0 0 auto;
   place-items: center;
-  width: 96px;
-  height: 96px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
   border-radius: 50%;
-  background: var(--surface-3);
-  color: var(--ink);
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.02em;
+  color: var(--body-ink);
+  transition: color 200ms, border-color 200ms, background 200ms;
 }
 
-.id-name {
-  margin: 0;
-  color: var(--ink);
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 32px;
+.hero-social svg {
+  width: 16px;
+  height: 16px;
 }
 
-.id-role {
-  margin: 4px 0 0;
-  color: var(--body);
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
+.hero-social a:hover {
+  color: var(--foreground);
+  border-color: var(--body-ink);
+  background: var(--card);
 }
 
-.id-focus {
-  display: inline-block;
-  margin: 12px 0 0;
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
-  background: var(--surface-3);
-  color: #b0b0b0;
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 20px;
-}
-
-.pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.pills li {
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
-  background: var(--surface-3);
-  color: var(--body);
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 20px;
-}
-
-.trust {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px 16px;
-  padding: 8px var(--pad-x) 40px;
-}
-
-.trust-label {
-  margin: 0;
-  color: var(--body);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 24px;
-}
-
-@property --float-y {
-  syntax: "<length>";
-  inherits: false;
-  initial-value: 0px;
-}
-
-.trust .pills li {
-  --float-y: 0px;
-  border: 1px solid transparent;
-  cursor: default;
-  transition:
-    transform 200ms var(--ease-enter),
-    border-color 200ms var(--ease-enter),
-    color 200ms var(--ease-enter);
-}
-
-@keyframes float {
-  0%,
-  100% {
-    --float-y: 0px;
-  }
-  50% {
-    --float-y: -4px;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .trust .pills li {
-    transform: translateY(var(--float-y));
-    animation-name: float;
-    animation-duration: 3.5s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-  }
-
-  .trust .pills li:nth-child(1) { animation-delay: 0ms; }
-  .trust .pills li:nth-child(2) { animation-delay: 300ms; }
-  .trust .pills li:nth-child(3) { animation-delay: 600ms; }
-  .trust .pills li:nth-child(4) { animation-delay: 900ms; }
-  .trust .pills li:nth-child(5) { animation-delay: 1200ms; }
-  .trust .pills li:nth-child(6) { animation-delay: 1500ms; }
-  .trust .pills li:nth-child(7) { animation-delay: 1800ms; }
-  .trust .pills li:nth-child(8) { animation-delay: 2100ms; }
-}
-
-@media (hover: hover) {
-  .trust .pills li:hover {
-    animation-play-state: paused;
-    transform: translateY(-3px);
-    border-color: #b0b0b0;
-    color: #b0b0b0;
-  }
-}
-
-a:focus-visible,
-.btn:focus-visible {
-  outline: 2px solid #b0b0b0;
+.hero-social a:focus-visible {
+  outline: 1px solid var(--body-ink);
   outline-offset: 3px;
 }
 
-@media (hover: hover) {
-  .btn-primary:hover {
-    background: #0d181a;
-    border-color: #0d181a;
-  }
+.hero-portrait {
+  grid-column: 9 / span 4;
+  justify-self: center;
+  width: min(100%, 320px);
+  aspect-ratio: 1;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 18%;
+  border: 1px solid var(--border);
+  animation: fade-in 700ms 200ms both;
+}
 
-  .btn-ghost:hover {
-    border-color: var(--body);
+@media (min-width: 1600px) {
+  .hero {
+    padding-top: 178px;
+    padding-bottom: 72px;
   }
 }
 
-.btn:active {
-  transform: translateY(1px);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .reveal {
-    animation-fill-mode: both;
-    animation-timing-function: var(--ease-enter);
+@media (max-width: 1199px) {
+  .hero-grid {
+    gap: 18px;
   }
 
-  .reveal--fade {
-    animation-name: fade-in;
+  .hero h1 {
+    font-size: 56px;
+    line-height: 64px;
   }
 
-  .reveal--up {
-    animation-name: fade-up;
+  .hero-role {
+    font-size: 27px;
+    line-height: 36px;
   }
 
-  .reveal--card {
-    animation-name: fade-slide-right;
+  .hero-summary {
+    font-size: 16px;
+    line-height: 26px;
   }
 
-  .reveal--headline {
-    animation-duration: 600ms;
-    animation-delay: 0ms;
-  }
-
-  .reveal--lede {
-    animation-duration: 600ms;
-    animation-delay: 150ms;
-  }
-
-  .reveal--ctas {
-    animation-duration: 600ms;
-    animation-delay: 300ms;
-  }
-
-  .reveal--card {
-    animation-duration: 700ms;
-    animation-delay: 400ms;
-  }
-
-  .reveal--trust {
-    animation-duration: 600ms;
-    animation-delay: 700ms;
-  }
-}
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes fade-slide-right {
-  from {
-    opacity: 0;
-    transform: translateX(32px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal,
-  .btn {
-    animation: none;
-    transition: none;
-    opacity: 1;
-    transform: none;
+  .hero-portrait {
+    width: min(100%, 260px);
   }
 }
 
 @media (max-width: 1023px) {
   .hero {
-    align-items: flex-start;
-    padding-top: 40px;
+    padding-top: 132px;
+    padding-bottom: 48px;
   }
 
   .hero-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 40px;
+    grid-template-columns: 1fr;
+    gap: 36px;
   }
 
   .hero-copy,
-  .id-card {
+  .hero-portrait {
     grid-column: auto;
-    max-width: none;
-  }
-
-  .id-card {
-    width: min(100%, 440px);
-    margin-inline: auto;
   }
 
   .hero h1 {
     font-size: 48px;
     line-height: 56px;
   }
+
+  .hero-summary,
+  .hero-stack {
+    max-width: 680px;
+  }
+
+  .hero-portrait {
+    width: min(100%, 240px);
+  }
 }
 
 @media (max-width: 639px) {
+  .hero {
+    padding-top: 146px;
+  }
+
   .hero h1 {
     font-size: 40px;
     line-height: 48px;
   }
 
-  .ctas {
+  .hero-role {
+    font-size: 25px;
+    line-height: 34px;
+  }
+
+  .hero-summary {
+    font-size: 16px;
+    line-height: 26px;
+  }
+
+  .hero-actions {
     flex-direction: column;
     align-items: stretch;
-    width: 100%;
+    margin-top: 24px;
+    gap: 10px;
   }
 
-  .btn {
-    width: 100%;
-  }
-
-  .id-head {
-    align-items: flex-start;
+  .hero-portrait {
+    width: min(100%, 220px);
   }
 }
 </style>

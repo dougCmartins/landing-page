@@ -1,22 +1,59 @@
 <template>
-  <div class="stage">
+  <div id="top" class="portfolio">
     <Header />
-    <HeroPortfolio />
+    <main>
+      <div class="hero-stage">
+        <img class="hero-background" src="/images/hero-bg.webp" alt="" fetchpriority="high">
+        <HeroPortfolio />
+      </div>
+      <PortfolioSections />
+    </main>
   </div>
 </template>
 
-<style scoped>
-.stage {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: var(--surface-0);
-  background-image:
-    radial-gradient(circle at 30% 50%, rgba(36, 251, 238, 0.15), transparent 60%),
-    linear-gradient(180deg, rgba(14, 15, 15, 0.6) 0%, rgba(14, 15, 15, 0.95) 100%),
-    url("/images/hero-bg.webp");
-  background-position: center, center, center;
-  background-size: auto, auto, cover;
-  background-repeat: no-repeat;
-}
-</style>
+<script setup lang="ts">
+const { copy, locale } = usePortfolioLocale()
+const siteUrl = useRuntimeConfig().public.siteUrl
+const shareImage = `${siteUrl}/images/hero-bg.webp`
+
+useHead(() => ({
+  htmlAttrs: { lang: locale.value },
+  title: copy.value.meta.title,
+  meta: [
+    { key: 'description', name: 'description', content: copy.value.meta.description },
+    { key: 'author', name: 'author', content: copy.value.hero.name },
+    { key: 'og:site_name', property: 'og:site_name', content: copy.value.hero.name },
+    { key: 'og:locale', property: 'og:locale', content: copy.value.meta.openGraphLocale },
+    { key: 'og:title', property: 'og:title', content: copy.value.meta.title },
+    { key: 'og:description', property: 'og:description', content: copy.value.meta.description },
+    { key: 'og:image:alt', property: 'og:image:alt', content: copy.value.meta.shareImageAlt },
+    { key: 'twitter:title', name: 'twitter:title', content: copy.value.meta.title },
+    { key: 'twitter:description', name: 'twitter:description', content: copy.value.meta.description },
+    { key: 'twitter:image:alt', name: 'twitter:image:alt', content: copy.value.meta.shareImageAlt },
+  ],
+  script: [
+    {
+      key: 'website-ld',
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: copy.value.hero.name,
+        url: siteUrl,
+        description: copy.value.meta.description,
+        inLanguage: locale.value,
+      }),
+    },
+  ],
+  link: [
+    { key: 'canonical', rel: 'canonical', href: siteUrl },
+  ],
+}))
+
+useHead({
+  meta: [
+    { property: 'og:image', content: shareImage },
+    { name: 'twitter:image', content: shareImage },
+  ],
+})
+</script>

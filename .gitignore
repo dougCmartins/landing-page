@@ -2,6 +2,8 @@
 .output
 .data
 .nuxt
+.nuxt-blocked
+.output-blocked
 .nitro
 .cache
 dist

@@ -103,10 +103,10 @@ Superfície:
 Texto:
 
 - Primário `#FFFFFF`
-- Corpo `#B0B0B0`
-- Muted `#8A8A8A`
+- Corpo `#D6D6D6`
+- Apoio `#C2C2C2`
 
-`#FFFFFF` é o branco que já está no hero, na story e no project. `#F7F7F7`, `#EEEEEE`, `#E6E6E6` e `#E7E7E7` aproximam-se dele sem serem o mesmo. `#B0B0B0` fica entre o corpo claro do hero (`#D6D6D6`) e o cinza dos frames (`#AAAAAA`, `#BCBCBC`), para o parágrafo ler sobre `#0E0F0F` e sobre `#181919`. `#8A8A8A` já é a legenda da story e do copyright.
+`#FFFFFF` fica nos títulos. O corpo `#D6D6D6` lê sobre `#0E0F0F` e sobre `#181919` sem o brilho do branco puro. O apoio `#C2C2C2` cobre datas, domínio e rodapé, acima do cinza `#A3A3A3` que afundava ao lado do título.
 
 Accent:
 
@@ -135,10 +135,10 @@ Os degradês que esbatem o título para transparente não entram. O título fica
 Aplicado nos HTML de `.art-director/mockups/` e nos oito componentes Vue em 2026-10-02.
 
 - Header e Footer: Manrope para DM Sans 14/24. Pastilha `#292929` para `#232526`, raio 500px. Texto `#E6E6E6` para `#FFFFFF`.
-- Hero: Inter para DM Sans. Corpo `#D6D6D6` para `#B0B0B0`. Título 60/72 para Display L 64/72, cor `#FFFFFF`. O botão continua `#13A961`. A sombra dos telemóveis passa a `shadow-phone`.
+- Hero: Inter para DM Sans. Corpo `#D6D6D6`. Título 60/72 para Display L 64/72, cor `#FFFFFF`. O botão continua `#13A961`. A sombra dos telemóveis passa a `shadow-phone`.
 - Feature: título 71/77 para Display L 64/72. O botão já é `#13A961`, raio 500px.
-- Story: título 71 para Display L. Lede Geist para DM Sans 20/30 em `#B0B0B0`. Padding 107×40 para 80×96.
+- Story: título 71 para Display L. Lede Geist para DM Sans 20/30 em `#D6D6D6`. Padding 107×40 para 80×96.
 - Achievement: título 71 para Display L. Marcas `#24FBEE` ficam. Legendas `#BCBCBC` para `#8A8A8A`.
-- Integration: fundo `#1C222A` para `#181919`. Título Manrope 56/72 para Display M 48/56. Corpo para DM Sans 20/30 `#B0B0B0`. «170+ tools» de `#DDFB24` para `#24FBEE`. Padding horizontal 95 para 96.
+- Integration: fundo `#1C222A` para `#181919`. Título Manrope 56/72 para Display M 48/56. Corpo para DM Sans 20/30 `#D6D6D6`. «170+ tools» de `#DDFB24` para `#24FBEE`. Padding horizontal 95 para 96.
 - Project: fundo `#0C111D` para `#181919`. Título DM Sans 62/79 para Display M 48/56 em Clash Display, cor `#FFFFFF`.
-- Feature 2: Geist 65 para Display L. Botão `#FF5029` para `#13A961`, raio 500px, texto `#090909`. Corpo `#AAAAAA` para `#B0B0B0`.
+- Feature 2: Geist 65 para Display L. Botão `#FF5029` para `#13A961`, raio 500px, texto `#090909`. Corpo `#AAAAAA` para `#D6D6D6`.

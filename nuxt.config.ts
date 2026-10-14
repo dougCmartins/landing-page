@@ -1,9 +1,9 @@
 const siteUrl = process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-const siteName = 'Doug Martins'
-const siteTitle = 'Doug Martins | Full-Stack Developer'
-const siteDescription = 'Mid-level Full-Stack Developer building scalable digital products with Laravel, PHP, and Vue 3.'
+const siteName = 'Douglas C Martins'
+const siteTitle = 'Douglas C Martins | Desenvolvedor Full Stack — DCMARTINS.CO'
+const siteDescription = 'Douglas C Martins — Desenvolvedor Full Stack que constrói produtos digitais escaláveis com Laravel, PHP e Vue.js. Experiência em pagamentos, e-commerce, APIs e arquitetura de software.'
 const shareImage = `${siteUrl}/images/hero-bg.webp`
-const shareImageAlt = 'Abstract background of the Doug Martins portfolio'
+const shareImageAlt = 'Fundo abstrato do portfólio de Douglas C Martins'
 
 export default defineNuxtConfig({
   runtimeConfig: {
@@ -21,13 +21,13 @@ export default defineNuxtConfig({
       title: siteTitle,
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-      htmlAttrs: { lang: 'en' },
+      htmlAttrs: { lang: 'pt-BR' },
       meta: [
         { name: 'description', content: siteDescription },
         { name: 'author', content: siteName },
         { name: 'robots', content: 'index, follow' },
         { property: 'og:site_name', content: siteName },
-        { property: 'og:locale', content: 'en' },
+        { property: 'og:locale', content: 'pt_BR' },
         { property: 'og:title', content: siteTitle },
         { property: 'og:description', content: siteDescription },
         { property: 'og:type', content: 'website' },
@@ -42,7 +42,7 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'canonical', href: siteUrl },
-        { rel: 'icon', href: '/favicon.ico' },
+        { rel: 'icon', href: '/favicon.png' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'preconnect', href: 'https://api.fontshare.com' },
@@ -53,19 +53,6 @@ export default defineNuxtConfig({
         {
           rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap',
-        },
-      ],
-      script: [
-        {
-          type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'WebSite',
-            name: siteName,
-            url: siteUrl,
-            description: siteDescription,
-            inLanguage: 'en',
-          }),
         },
       ],
       style: [
@@ -119,6 +106,7 @@ export default defineNuxtConfig({
     },
   },
   vite: {
+    cacheDir: '.nuxt/vite',
     server: {
       watch: {
         usePolling: process.env.CHOKIDAR_USEPOLLING === 'true',
